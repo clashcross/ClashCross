@@ -1,0 +1,56 @@
+name: clashcross
+base: core22
+version: '1.0.2'
+summary: A Linux Clash Proxy Fronted based on Clash # 79 char long summary
+description: |
+  A Linux Clash Proxy Fronted based on Clash. Supports subscriptions, proxies switcher, logger,
+  dynamic settings, profile management, auto start with system.ClashCross is a proxy debugging application built on the Clash core. We do not provide any services for it, so please refrain from giving feedback on any issues not related to the application's own usage.
+  ClashCross是一款以Clash为内核的代理调试应用，且我们不为其提供任何服务，请务必不要反馈任何非应用本身使用引起的问题。
+
+grade: stable
+confinement: strict
+license: GPL-3.0+
+
+architectures:
+  - build-on: amd64
+    build-for: amd64
+#   - build-on: amd64
+#     build-for: arm64
+
+parts:
+  clashcross:
+#    plugin: nil
+    plugin: nil
+    source: .
+    build-snaps: [go]
+    override-build: |
+      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/bin/
+      cp -r build/linux/x64/release/bundle/* $SNAPCRAFT_PART_INSTALL/usr/bin
+    stage-packages:
+      - libappindicator3-dev
+    build-packages:
+      - python3
+      - git
+      - curl
+      - clang
+      - cmake
+      - ninja-build
+      - unzip
+
+apps:
+  clashcross:
+    command: usr/bin/clashcross
+    extensions: [ gnome ]
+    plugs:
+      - desktop
+      - desktop-legacy
+      - network
+      - home
+      - unity7
+      # manually connect by snap
+      - system-observe
+      - network-observe
+      - network-control
+      - network-status
+      # end clash subprocess
+      - process-control

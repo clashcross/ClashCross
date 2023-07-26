@@ -1,0 +1,10 @@
+{
+  "http_port": "HTTP Port",
+  "socks_port": "SOCKS5 Port",
+  "allow_lan": "Allow LAN",
+  "mode": "Mode",
+  "log_level": "Log Level",
+  "proxies": "Proxies",
+  "Settings": "Settings",
+  "About": "About"
+}

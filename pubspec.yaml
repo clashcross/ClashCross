@@ -1,0 +1,120 @@
+name: clashcross
+description: A new Flutter project.
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.2+102
+
+environment:
+  sdk: '>=3.0.3 <4.0.0'
+#  sdk: ">=2.16.2 <3.0.0"
+#  sdk: ">=2.17.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  kommon:
+    git:
+      url: https://github.com/Kingtous/kommon-flutter.git
+      ref: d41ba1d
+  path: ^1.8.0
+  path_provider: ^2.0.15
+  tray_manager: ^0.2.0
+  window_manager: ^0.3.5
+  settings_ui: ^2.0.2
+  launch_at_startup: ^0.1.7
+  package_info_plus: ^4.0.2
+  flutter_local_notifications: ^9.4.0
+  ffigen: ^9.0.0
+  proxy_manager: ^0.0.3
+  clipboard: ^0.1.3
+  url_launcher: any
+  icons_launcher: ^2.0.4
+  system_proxy: ^0.1.0
+  open_settings: ^2.0.2
+  yaml: ^3.1.1
+  yaml_writer: ^1.0.3
+  flutter_svg: ^2.0.7
+  get: ^4.6.5
+  json_annotation: ^4.8.1
+  provider: ^6.0.5
+  flutter_easyloading: ^3.0.3
+  fluttertoast: ^8.2.2
+  flutter_barcode_scanner: ^2.0.0
+  upgrader: ^8.0.0
+  in_app_review: ^2.0.6
+  firebase_analytics: ^10.4.4
+  flutter_launcher_icons: ^0.11.0
+  #  flutter_background_service: ^3.0.1
+  firebase_core: ^2.15.0
+  app_links: ^3.4.3
+  url_protocol: ^1.0.0
+dependency_overrides:
+  cli_util: ^0.4.0
+  file: ^7.0.0
+  intl: ^0.18.0
+  ffi: ^2.0.2
+  win32: ^5.0.5
+  bruno:
+    git:
+      url: https://github.com/zhoujia456888/bruno
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.2
+  json_serializable: ^6.7.1
+
+flutter_icons:
+  android: "ic_launcher"
+  ios: false
+  image_path: "assets/images/multiclash.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: false
+    image_path: "assets/images/multiclash.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/images/multiclash.png"
+    icon_size: 256 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/images/multiclash.png"
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/flags/
+    - assets/tp/clash/
+    - assets/images/
+
+  fonts:
+    - family: Aquire
+      fonts:
+        - asset: assets/font/Aquire.otf
+flutter_intl:
+  enabled: true
+ffigen:
+  output: 'lib/generated_bindings.dart'
+  headers:
+    entry-points:
+      - 'clash/libclash.h'

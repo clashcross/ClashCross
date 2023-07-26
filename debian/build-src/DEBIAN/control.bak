@@ -1,0 +1,9 @@
+Package: com.clashcross.clashcross
+Version: 1.0.0
+Architecture: amd64 
+Section: Network
+Maintainer: ClashCross
+Depends: libappindicator3-dev
+Priority: optional
+Homepage: https://www.clashcross.com
+Description: A Clash Proxy Fronted based on Clash

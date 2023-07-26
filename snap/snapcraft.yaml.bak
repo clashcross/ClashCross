@@ -1,0 +1,56 @@
+name: clashcross
+base: core22
+version: '1.0.0'
+summary: A Linux Clash Proxy Fronted based on Clash # 79 char long summary
+description: |
+  A Linux Clash Proxy Fronted based on Clash. Supports subscriptions, proxies switcher, logger,
+  dynamic settings, profile management, auto start with system.ClashCross is a proxy debugging application built on the Clash core. We do not provide any services for it, so please refrain from giving feedback on any issues not related to the application's own usage.
+  ClashCross是一款以Clash为内核的代理调试应用，且我们不为其提供任何服务，请务必不要反馈任何非应用本身使用引起的问题。
+
+grade: stable
+confinement: strict
+license: GPL-3.0+
+
+architectures:
+  - build-on: amd64
+    build-for: amd64
+#   - build-on: amd64
+#     build-for: arm64
+
+parts:
+  clashcross:
+    plugin: nil
+    source: .
+    build-snaps: [go]
+    override-build: |
+#      ./build-clash-lib.py
+#      git clone --depth 1 -b stable https://github.com/flutter/flutter.git /root/flutter
+#      export PATH="/root/flutter/bin:$PATH"
+#      flutter pub get
+#      flutter build linux --release -v
+      mkdir -p $CRAFT_PART_INSTALL/usr/bin/
+      cp -r ./build/linux/*/release/bundle/* $CRAFT_PART_INSTALL/usr/bin
+    build-packages:
+#      - python3
+      - git
+      - curl
+      - clang
+      - cmake
+      - ninja-build
+      - unzip
+
+apps:
+  clashcross:
+    command: usr/bin/ClashCross
+    extensions: [ gnome ]
+    plugs:
+      - network
+      - home
+      - unity7
+      # manually connect by snap
+      - system-observe
+      - network-observe
+      - network-control
+      - network-status
+      # end clash subprocess
+      - process-control

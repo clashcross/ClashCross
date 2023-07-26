@@ -1,0 +1,8 @@
+flutter build linux --release
+cp -r build/linux/x64/release/bundle/* debian/build-src/opt/apps/com.clashcross.clashcross/files/
+
+sudo dpkg-deb -b debian/build-src/ debian/clashcross.deb
+
+sudo dpkg -i debian/clashcross.deb
+
+sudo apt --fix-broken install

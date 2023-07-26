@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See License.txt in the project root for license information.
+
+# Symlink bin command to /usr/bin
+rm /usr/bin/clashcross || true
+ln -s /opt/apps/com.clashcross.clashcross/files/clashcross /usr/bin/clashcross || true
+
+# Copy to /usr/share/applications
+cp /opt/apps/com.clashcross.clashcross/entries/applications/com.clashcross.clashcross.desktop /usr/share/applications/com.clashcross.clashcross.desktop
+# Install the desktop entry
+if hash update-desktop-database 2>/dev/null; then
+	update-desktop-database
+fi
+
+echo "ClashCross has successfully installed!"
