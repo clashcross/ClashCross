@@ -44,6 +44,7 @@ Please download .exe setup directly. [https://github.com/shipinbaoku/ClashCross/
 - Home
 
   ![image](docs/screenshot/photo_2023-07-27_05-03-12.jpg)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fshipinbaoku%2Fclashcross.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fshipinbaoku%2Fclashcross?ref=badge_shield)
 - Proxy
 
   ![image](docs/screenshot/photo_2023-07-27_05-03-34.jpg)
@@ -64,3 +65,6 @@ Please download .exe setup directly. [https://github.com/shipinbaoku/ClashCross/
 - [clash](https://github.com/Dreamacro/clash)
 - [flcash](https://github.com/Fclash/Fclash)
 - [flutter](https://github.com/flutter/flutter)
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fshipinbaoku%2Fclashcross.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fshipinbaoku%2Fclashcross?ref=badge_large)
