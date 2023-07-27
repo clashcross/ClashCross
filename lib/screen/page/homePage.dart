@@ -45,7 +45,8 @@ class HomePage extends StatelessWidget {
       // maps[element];
       // break;
     }
-
+    final nonSelectedColor = Colors.grey.shade400;
+    const selectedColor = Colors.blueAccent;
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -64,6 +65,9 @@ class HomePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16)),
                 child: Builder(builder: (context) {
                   return ListTile(
+                    onTap: () {
+                      Get.to(const Proxy());
+                    },
                     leading: SvgPicture.asset(
                       // 'assets/flags/${Flags.list[currentLocIndex]['imagePath']}',
                       'assets/active.svg',
@@ -106,8 +110,6 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 16),
             child: SpeedWidget(),
           ),
-
-
           Stack(
             alignment: AlignmentDirectional.bottomCenter,
             children: [
@@ -121,71 +123,142 @@ class HomePage extends StatelessWidget {
               ),
               Builder(builder: (context) {
                 return Obx(() => GestureDetector(
-                  onTap: () {
-                    if (cs.isSystemProxyObs.value) {
-                      cs.clearSystemProxy();
-                      if (!Platform.isWindows) {
-
-                        nt.cancelAllNotification();
-                      }
-                    } else {
-                      cs.setSystemProxy();
-                      if (!isDesktop) {
-                        if (Platform.isAndroid) {
-                          FlutterLocalNotificationsPlugin
-                          flutterLocalNotificationsPlugin =
-                          FlutterLocalNotificationsPlugin();
-                          flutterLocalNotificationsPlugin
-                              .resolvePlatformSpecificImplementation<
-                              AndroidFlutterLocalNotificationsPlugin>()
-                              ?.requestPermission();
-                          Timer.periodic(const Duration(seconds: 1), (t) {
-                            nt.showNotification("ClashCross",
-                                "↑:${cs.uploadRate.value.toStringAsFixed(1)}KB/s ↓:${cs.downRate.value.toStringAsFixed(1)}KB/s");
-                          });
+                      onTap: () {
+                        if (cs.isSystemProxyObs.value) {
+                          cs.clearSystemProxy();
+                          if (!Platform.isWindows) {
+                            nt.cancelAllNotification();
+                          }
+                        } else {
+                          cs.setSystemProxy();
+                          if (!isDesktop) {
+                            if (Platform.isAndroid) {
+                              FlutterLocalNotificationsPlugin
+                                  flutterLocalNotificationsPlugin =
+                                  FlutterLocalNotificationsPlugin();
+                              flutterLocalNotificationsPlugin
+                                  .resolvePlatformSpecificImplementation<
+                                      AndroidFlutterLocalNotificationsPlugin>()
+                                  ?.requestPermission();
+                              Timer.periodic(const Duration(seconds: 1), (t) {
+                                nt.showNotification("ClashCross",
+                                    "↑:${cs.uploadRate.value.toStringAsFixed(1)}KB/s ↓:${cs.downRate.value.toStringAsFixed(1)}KB/s");
+                              });
+                            }
+                          }
                         }
-                      }
-                    }
-                  },
-                  child: Card(
-                    elevation: 6,
-                    color: isDarkTheme
-                        ? const Color(0xff181227)
-                        : const Color(0xffF5F5F6),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100)),
-                    child: SizedBox.square(
-                      dimension: 75 * 2,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              cs.isSystemProxyObs.value
-                                  ? 'assets/stop.svg'
-                                  : 'assets/powOn.svg',
-                              width: cs.isSystemProxyObs.value ? 50 : 50,
-                              color: cs.isSystemProxyObs.value
-                                  ? Colors.redAccent.shade200
-                                  : Theme.of(context).colorScheme.secondary,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Text(
-                                cs.isSystemProxyObs.value
-                                    ? 'Tap to Stop'.tr
-                                    : 'Tap to Start'.tr,
-                                style: Theme.of(context)
-                                    .primaryTextTheme
-                                    .headline6,
-                              ),
-                            ),
-                          ]),
-                    ),
-                  ),
-                ));
+                      },
+                      child: Card(
+                        elevation: 6,
+                        color: isDarkTheme
+                            ? const Color(0xff181227)
+                            : const Color(0xffF5F5F6),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(100)),
+                        child: SizedBox.square(
+                          dimension: 75 * 2,
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  cs.isSystemProxyObs.value
+                                      ? 'assets/stop.svg'
+                                      : 'assets/powOn.svg',
+                                  width: cs.isSystemProxyObs.value ? 50 : 50,
+                                  color: cs.isSystemProxyObs.value
+                                      ? Colors.redAccent.shade200
+                                      : Theme.of(context).colorScheme.secondary,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Text(
+                                    cs.isSystemProxyObs.value
+                                        ? 'Tap to Stop'.tr
+                                        : 'Tap to Start'.tr,
+                                    style: Theme.of(context)
+                                        .primaryTextTheme
+                                        .headline6,
+                                  ),
+                                ),
+                              ]),
+                        ),
+                      ),
+                    ));
               }),
             ],
+          ),
+          isDesktop?Container():Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16),
+            child: Obx(
+                    (){
+                  final modeother = Get.find<ClashService>().configEntity.value?.mode ?? "direct";
+                  return  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.find<ClashService>()
+                              .changeConfigField('mode', 'Rule');
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: modeother == "rule"
+                                  ? selectedColor
+                                  : nonSelectedColor,
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(12.0),
+                                  bottomLeft: Radius.circular(12.0))),
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text(
+                            "rule".tr,
+                            // style: style,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.find<ClashService>()
+                              .changeConfigField('mode', 'Global');
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: modeother == "global"
+                                  ? selectedColor
+                                  : nonSelectedColor
+                          ),
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text("global".tr,
+                            // style: style,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.find<ClashService>()
+                              .changeConfigField('mode', 'Direct');
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: modeother == "direct"
+                                  ? selectedColor
+                                  : nonSelectedColor,
+                              borderRadius: const BorderRadius.only(
+                                  topRight: Radius.circular(12.0),
+                                  bottomRight: Radius.circular(12.0))),
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text("direct".tr,
+                            // style: style
+                          ),
+                        ),
+                      )
+                    ],
+                  );
+                }
+            ),
+
+
           ),
           Obx(
             () => (cs.currentYaml.value == "config.yaml" &&

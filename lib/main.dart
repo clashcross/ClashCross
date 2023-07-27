@@ -292,19 +292,19 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   @override
-  // void onTrayMenuItemClick(MenuItem menuItem) {
-  //   switch (menuItem.key) {
-  //     case 'exit':
-  //       windowManager.close().then((value) async {
-  //         await Get.find<ClashService>().closeClashDaemon();
-  //         exit(0);
-  //       });
-  //       break;
-  //     case 'show':
-  //       windowManager.focus();
-  //       windowManager.show();
-  //   }
-  // }
+  void onTrayMenuItemClick(MenuItem menuItem) {
+    switch (menuItem.key) {
+      case 'exit':
+        windowManager.close().then((value) async {
+          await Get.find<ClashService>().closeClashDaemon();
+          exit(0);
+        });
+        break;
+      case 'show':
+        windowManager.focus();
+        windowManager.show();
+    }
+  }
 
   @override
   void initState() {

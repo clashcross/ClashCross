@@ -604,12 +604,12 @@ class ClashService extends GetxService with TrayListener {
       case ACTION_CPOY_SYSTEM_PROXY:
         copySystemProxy();
         break;
-      case 'show':
-        windowManager.show();
-        break;
-      case 'exit':
-        windowManager.close();
-        clearSystemProxy().then((value) => exit(0));
+      // case 'show':
+      //   windowManager.show();
+      //   break;
+      // case 'exit':
+      //   windowManager.close();
+      //   clearSystemProxy().then((value) => exit(0));
     }
   }
 

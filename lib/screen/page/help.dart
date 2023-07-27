@@ -14,23 +14,25 @@ class HelpPage extends StatelessWidget {
         shadowColor: Colors.transparent,
         title: Text('Help'.tr),
       ),
-      body: Container(
+      body: SingleChildScrollView(
+          child: Container(
         alignment: Alignment.center,
         // color: Colors.white,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            ListTile(
-              leading: const Icon(Icons.warning),
-              title: Text(
-                  "ClashCross is a proxy debugging application built on the Clash core. We do not provide any services for it, so please refrain from giving feedback on any issues not related to the application's own usage."
-                      .tr),
-            ),
+            // ListTile(
+            //   leading: const Icon(Icons.warning),
+            //   title: Text(
+            //       "ClashCross is a proxy debugging application built on the Clash core. We do not provide any services for it, so please refrain from giving feedback on any issues not related to the application's own usage."
+            //           .tr),
+            // ),
             const Divider(
               thickness: 1.0,
             ),
             BrnAbnormalStateWidget(
+              bgColor: Theme.of(context).primaryColor,
               // title: 'No profile, please add profiles.'.tr,
               content: "How to import profie".tr,
             ),
@@ -64,7 +66,7 @@ class HelpPage extends StatelessWidget {
             ),
           ],
         ),
-      ),
+      )),
     );
   }
 }

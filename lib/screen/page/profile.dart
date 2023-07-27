@@ -8,6 +8,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../main.dart';
 import '../../model/themeCollection.dart';
@@ -33,7 +34,7 @@ class _ProfileState extends State<Profile> {
           // Obx(() => BrnNoticeBar(
           //     content: 'Current using'.trParams(
           //         {"name": Get.find<ClashService>().currentYaml.value}))),
-          Expanded(child: Obx(() => buildProfileList()))
+          Expanded(child: Obx(() => buildProfileList(context)))
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -50,9 +51,12 @@ class _ProfileState extends State<Profile> {
                   InkWell(
                     onTap: () async {
                       final dir = await getApplicationSupportDirectory();
-                      launchUrl(Uri.parse("file://${join(dir.path, "clash")}"));
-
-                      // launchUrlString("file://${join(dir.path, "clash")}");
+                      if (Platform.isWindows) {
+                        launchUrlString("file://${join(dir.path, "clash")}");
+                      } else {
+                        launchUrl(
+                            Uri.parse("file://${join(dir.path, "clash")}"));
+                      }
                     },
                     child: Row(
                       children: [
@@ -71,11 +75,10 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  Widget buildProfileList() {
+  Widget buildProfileList(context) {
     final configs = Get.find<ClashService>().yamlConfigs;
-    final configsList =
-        Get.find<ClashService>().yamlConfigs.toList(growable: false);
-    if (configs.length==1) {
+    final configsList = configs.toList(growable: false);
+    if (configs.length == 1) {
       return Container(
         alignment: Alignment.center,
         // color: Colors.white,
@@ -83,16 +86,17 @@ class _ProfileState extends State<Profile> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            ListTile(
-              leading: const Icon(Icons.warning),
-              title: Text(
-                  "ClashCross is a proxy debugging application built on the Clash core. We do not provide any services for it, so please refrain from giving feedback on any issues not related to the application's own usage."
-                      .tr),
-            ),
+            // ListTile(
+            //   leading: const Icon(Icons.warning),
+            //   title: Text(
+            //       "ClashCross is a proxy debugging application built on the Clash core. We do not provide any services for it, so please refrain from giving feedback on any issues not related to the application's own usage."
+            //           .tr),
+            // ),
             const Divider(
               thickness: 1.0,
             ),
             BrnAbnormalStateWidget(
+              bgColor: Theme.of(context).primaryColor,
               // title: 'No profile, please add profiles.'.tr,
               content: "How to import profie".tr,
             ),
@@ -101,8 +105,8 @@ class _ProfileState extends State<Profile> {
             ),
             // Text("Author:".trParams({"name": "Kingtous"})),
             Text(
-              "如果您打算自建服务请通过以下Aff购买服务器，以下服务商均为具有一定运营时常和技术能力的商家，稳定性方面和质量方面均有保障。数据可以得到有效保护。:".tr,
-              style: TextStyle(fontFamily: 'nssc'),
+              "afftips".tr,
+              style: const TextStyle(fontFamily: 'nssc'),
             ),
             Wrap(
               children: [
@@ -127,7 +131,6 @@ class _ProfileState extends State<Profile> {
           ],
         ),
       );
-
     } else {
       return ListView.builder(
         itemCount: configs.length,
