@@ -1,7 +1,7 @@
 # 常见管理系统集成示例：
 ## v2board：
 修改目录下/public/theme/v2board/assets/umi.js 文件内容如下：
-`
+```
 ...
 return (Object(u["i"])() || Object(u["j"])()) && (t.push({
 title: "Shadowrocket",
@@ -42,6 +42,7 @@ href: "clash://install-config?url=" + encodeURIComponent(e) + "&name=" + window.
 title: "Surfboard",
 href: "surge:///install-config?url=" + encodeURIComponent(e) + "&name=" + window.settings.title
 }))
-...`
+...
+```
 然后将ClashCross.png图标文件上传到public/theme/v2board/assets/images/icon 。
 您也可以直接下载我们修改好的umi.js文件进行覆盖。[下载地址](/docs/v2board)
