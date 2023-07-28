@@ -256,9 +256,9 @@ class _MyHomePageState extends State<MyHomePage>
     }
   ];
   final cfg = AppcastConfiguration(
-      url:
-          "https://www.clashcross.xyz/appcast.xml",
-      supportedOS: ['android','windows',"macos","linux"]);
+      url: "https://www.clashcross.xyz/appcast.xml",
+      supportedOS: ['android', 'windows', "macos", "linux"]);
+
   // final cfg = AppcastConfiguration(
   //     url:
   //         "https://raw.githubusercontent.com/larryaasen/upgrader/master/test/testappcast.xml",
@@ -373,7 +373,6 @@ class _MyHomePageState extends State<MyHomePage>
               items: List.generate(
                   _itemsList.length,
                   (index) => BottomNavigationBarItem(
-
                         icon: SvgPicture.asset(
                             _itemsList[index]['iconPath'] as String,
                             height: index != currentPage ? 20 : 24,
@@ -491,24 +490,37 @@ Future<void> initDeepLinks() async {
 
 importProfile(Uri uri) {
   if (uri.queryParameters["url"] != null) {
-    Get.find<DialogService>().inputDialog(
-        title: "What is your config name".tr,
-        onText: (name) async {
-          if (name == "config") {
-            EasyLoading.showError("Cannot use this special name".tr);
-            // BrnToast.show("Cannot use this special name".tr, context);
-          }
-          Future.delayed(Duration.zero, () async {
-            try {
-              BrnLoadingDialog.show(Get.context!,
-                  content: '', barrierDismissible: false);
-              await Get.find<ClashService>()
-                  .addProfile(name, uri.queryParameters["url"]!);
-            } finally {
-              BrnLoadingDialog.dismiss(Get.context!);
+    if (uri.queryParameters["name"] != null) {
+      Future.delayed(Duration.zero, () async {
+        try {
+          BrnLoadingDialog.show(Get.context!,
+              content: '', barrierDismissible: false);
+          await Get.find<ClashService>().addProfile(
+              uri.queryParameters["name"]!, uri.queryParameters["url"]!);
+        } finally {
+          BrnLoadingDialog.dismiss(Get.context!);
+        }
+      });
+    } else {
+      Get.find<DialogService>().inputDialog(
+          title: "What is your config name".tr,
+          onText: (name) async {
+            if (name == "config") {
+              EasyLoading.showError("Cannot use this special name".tr);
+              // BrnToast.show("Cannot use this special name".tr, context);
             }
+            Future.delayed(Duration.zero, () async {
+              try {
+                BrnLoadingDialog.show(Get.context!,
+                    content: '', barrierDismissible: false);
+                await Get.find<ClashService>()
+                    .addProfile(name, uri.queryParameters["url"]!);
+              } finally {
+                BrnLoadingDialog.dismiss(Get.context!);
+              }
+            });
           });
-        });
+    }
   } else {
     EasyLoading.showError("请导入有效的clash订阅链接");
   }

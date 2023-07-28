@@ -66,6 +66,18 @@
                 <!-- Add optional android:host to distinguish your app
                      from others in case of conflicting scheme name -->
                 <data
+                    android:scheme="clashcross"
+                    android:host="install-config" />
+                <!-- <data android:scheme="sample" /> -->
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Add optional android:host to distinguish your app
+                     from others in case of conflicting scheme name -->
+                <data
                     android:scheme="clash"
                     android:host="import-config" />
                 <!-- <data android:scheme="sample" /> -->

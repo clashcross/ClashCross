@@ -43,6 +43,14 @@
 
 请直接下载.exe安装文件。[https://github.com/shipinbaoku/ClashCross/releases](https://github.com/shipinbaoku/ClashCross/releases)
 
+# Url_scheme 
+我们的应用程序允许第三方通过url_scheme方式导入clash订阅，规范如下：
+## android：clashcross://import-config?url=订阅链接
+## windows&macos：clashcross://?url=订阅链接
+## linux：暂不支持，需要用户手动复制粘贴导入
+## <a href="/docs/zh/url_scheme.md">具体协议管理系统修改方法，以v2board为例</a>
+
+
 # 界面预览
 
 - 主页

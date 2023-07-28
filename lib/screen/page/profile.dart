@@ -52,10 +52,10 @@ class _ProfileState extends State<Profile> {
                     onTap: () async {
                       final dir = await getApplicationSupportDirectory();
                       if (Platform.isWindows) {
-                        launchUrlString("file://${join(dir.path, "clash")}");
+                        launchUrlString("file://${join(dir.path, "clashCross")}");
                       } else {
                         launchUrl(
-                            Uri.parse("file://${join(dir.path, "clash")}"));
+                            Uri.parse("file://${join(dir.path, "clashCross")}"));
                       }
                     },
                     child: Row(
@@ -78,7 +78,7 @@ class _ProfileState extends State<Profile> {
   Widget buildProfileList(context) {
     final configs = Get.find<ClashService>().yamlConfigs;
     final configsList = configs.toList(growable: false);
-    if (configs.length == 1) {
+    if (configs.isEmpty) {
       return Container(
         alignment: Alignment.center,
         // color: Colors.white,

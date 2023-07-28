@@ -42,6 +42,18 @@ Please download .dmg setup directly. [https://github.com/shipinbaoku/ClashCross/
 
 Please download .exe setup directly. [https://github.com/shipinbaoku/ClashCross/releases](https://github.com/shipinbaoku/ClashCross/releases)
 
+# Url_scheme
+
+Our application allows third parties to import Clash subscriptions using the url_scheme method, following the specifications below:
+
+## Android: clashcross://import-config?url=subscription_link
+
+## Windows & macOS: clashcross://?url=subscription_link
+
+## Linux: Not supported at the moment, users need to manually copy and paste for importing.
+
+## <a href="/docs/en/url_scheme.md">Specific protocol management system modification method, using v2board as an example</a>
+
 # Screen
 - Home
 

@@ -44,6 +44,7 @@ class ClashService extends GetxService with TrayListener {
   // final currentYaml = isDesktop?'config.yaml'.obs:"".obs;
   final currentYaml = 'config.yaml'.obs;
   final proxyStatus = RxMap<String, int>();
+  late RxMap<String, int> sortedproxyStatus = RxMap<String, int>();
 
   // action
   static const ACTION_SET_SYSTEM_PROXY = "assr";
@@ -102,7 +103,7 @@ class ClashService extends GetxService with TrayListener {
     Request.setBaseUrl(clashBaseUrl);
     // init clash
     // kill all other clash clients
-    final clashConfigPath = p.join(_clashDirectory.path, "clash");
+    final clashConfigPath = p.join(_clashDirectory.path, "clashCross");
     _clashDirectory = Directory(clashConfigPath);
     print("fclash work directory: ${_clashDirectory.path}");
     final clashConf = p.join(_clashDirectory.path, currentYaml.value);
@@ -159,8 +160,6 @@ class ClashService extends GetxService with TrayListener {
     String buildNumber = packageInfo.buildNumber;
     app_version = version;
     build_number = buildNumber;
-    print('App Version: $version');
-    print('Build Number: $buildNumber');
   }
 
   void getConfigs() {
@@ -173,6 +172,8 @@ class ClashService extends GetxService with TrayListener {
         Get.printInfo(info: 'detected: ${entity.path}');
       }
     }
+    yamlConfigs.removeWhere((element) => element.path.toLowerCase().endsWith("config.yaml"));
+
   }
 
   Map<String, dynamic> getConnections() {

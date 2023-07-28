@@ -146,7 +146,8 @@ class _ProxyState extends State<Proxy> {
       //     ),
       //   );
       // }
-
+    print(selectors);
+    print("maps");
       selectors = selectors
           .where((sel) => maps[sel]['name'].toLowerCase() != 'global')
           .toList();

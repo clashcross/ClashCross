@@ -34,4 +34,8 @@ class NotificationService extends GetxService {
   Future<void> cancelAllNotification() async {
     await notification.cancelAll();
   }
+
+  Future<void> cancelNotification(id) async {
+    await notification.cancel(id);
+  }
 }

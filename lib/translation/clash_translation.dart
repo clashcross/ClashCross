@@ -87,9 +87,12 @@ class ClashTranslations extends Translations {
           "How to import profie":
               "You can import the configuration in the following ways:\n1. Manually copy and paste the Clash subscription address for import.\n2. Scan the Clash subscription QR code for import.\n3.After installing the software, you can click on the Clash subscription link to import it.\n4. Desktop version users can directly import the Clash configuration into the configuration folder.",
           "Help": "How to use",
-          "Copy terminal proxy command":"Copy terminal proxy command",
-          "Copy the proxy command and run it in the terminal":"Copy the proxy command and run it in the terminal",
-          "afftips":" If you plan to build your own server, please purchase the servers through the following Aff. All the service providers listed below are reputable businesses with a certain operational history and technical expertise. They guarantee both stability and quality. Your data will be effectively protected."
+          "Copy terminal proxy command": "Copy terminal proxy command",
+          "Copy the proxy command and run it in the terminal":
+              "Copy the proxy command and run it in the terminal",
+          "afftips":
+              " If you plan to build your own server, please purchase the servers through the following Aff. All the service providers listed below are reputable businesses with a certain operational history and technical expertise. They guarantee both stability and quality. Your data will be effectively protected.",
+          "No Profile Please import": "No Profile Please import"
         },
         'zh_CN': {
           "http_port": "HTTP端口",
@@ -101,8 +104,7 @@ class ClashTranslations extends Translations {
           "Settings": "设置",
           "Test Delay": "测试延迟",
           "Current using": "配置:@name",
-          "is running as system proxy now. Enjoy.":
-              "已经被设置为系统代理，好耶！",
+          "is running as system proxy now. Enjoy.": "已经被设置为系统代理，好耶！",
           "No Logs currently / Connecting to clash log daemon...":
               "现在没有日志 / 正在连接至Clash日志后台",
           "Log is running. Any logs will show below.": "日志功能正在运行，所有日志将会显示在下方",
@@ -137,8 +139,7 @@ class ClashTranslations extends Translations {
           "You can't delete a profile which is in use!": "不能删除正在使用的文件",
           "Please switch to another profile first": "请先切换为其他配置文件",
           'No profile, please add profiles.': "暂无可用配置文件",
-          "a clash proxy fronted by Flutter":
-              "使用Flutter构建的Clash代理",
+          "a clash proxy fronted by Flutter": "使用Flutter构建的Clash代理",
           'version:': "版本: @version",
           "Author:": "作者: @name",
           "View me at Github": "Github主页",
@@ -216,9 +217,11 @@ class ClashTranslations extends Translations {
           "How to import profie":
               "可以通过如下方式导入Clash配置:\n1,将clash订阅地址手动复制粘贴导入\n2,扫描clash订阅二维码导入\n3,安装该软件后点击clash订阅链接导入\n4,桌面版用户直接导入clash配置到配置文件夹",
           "Help": "帮助",
-          "Copy terminal proxy command":"复制终端代理命令",
-          "Copy the proxy command and run it in the terminal":"复制代理命令到终端运行",
-          "afftips":" 如果您打算自建服务请通过以下Aff购买服务器，以下服务商均为具有一定运营时常和技术能力的商家，稳定性方面和质量方面均有保障。数据可以得到有效保护。"
+          "Copy terminal proxy command": "复制终端代理命令",
+          "Copy the proxy command and run it in the terminal": "复制代理命令到终端运行",
+          "afftips":
+              " 如果您打算自建服务请通过以下Aff购买服务器，以下服务商均为具有一定运营时常和技术能力的商家，稳定性方面和质量方面均有保障。数据可以得到有效保护。",
+          "No Profile Please import": "暂无订阅，请导入"
         }
       };
 }
