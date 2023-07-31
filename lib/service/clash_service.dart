@@ -4,12 +4,14 @@ import 'dart:ffi' as ffi;
 import 'dart:io';
 import 'dart:isolate';
 
+import 'package:clashcross/tools/customlaunch.dart';
 import 'package:dio/dio.dart';
 import 'package:ffi/ffi.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:kommon/kommon.dart' hide ProxyTypes;
+import 'package:logger/logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
@@ -43,8 +45,8 @@ class ClashService extends GetxService with TrayListener {
 
   // final currentYaml = isDesktop?'config.yaml'.obs:"".obs;
   final currentYaml = 'config.yaml'.obs;
+  // final currentYaml = ''.obs;
   final proxyStatus = RxMap<String, int>();
-  late RxMap<String, int> sortedproxyStatus = RxMap<String, int>();
 
   // action
   static const ACTION_SET_SYSTEM_PROXY = "assr";
@@ -56,6 +58,8 @@ class ClashService extends GetxService with TrayListener {
   static var initializedHttpPort = 0;
   static var initializedSockPort = 0;
   static var initializedMixedPort = 0;
+  var customTestUrl =
+      SpUtil.getData('customTestUrl', defValue: "https://www.google.com");
 
   // config
   Rx<ClashConfigEntity?> configEntity = Rx(null);
@@ -172,8 +176,8 @@ class ClashService extends GetxService with TrayListener {
         Get.printInfo(info: 'detected: ${entity.path}');
       }
     }
-    yamlConfigs.removeWhere((element) => element.path.toLowerCase().endsWith("config.yaml"));
-
+    yamlConfigs.removeWhere(
+        (element) => element.path.toLowerCase().endsWith("config.yaml"));
   }
 
   Map<String, dynamic> getConnections() {
@@ -363,6 +367,13 @@ class ClashService extends GetxService with TrayListener {
         setSystemProxy();
       }
     }
+  }
+
+  changeCustomTestUrl(url) {
+    url = addHttpPrefixIfNeeded(url);
+    customTestUrl = url;
+    SpUtil.setData('customTestUrl', url);
+    reload();
   }
 
   bool isSystemProxy() {
@@ -672,13 +683,15 @@ class ClashService extends GetxService with TrayListener {
     }
   }
 
-  Future<int> delay(String proxyName,
-      {int timeout = 5000, String url = "https://www.google.com"}) async {
+  Future<int> delay(String proxyName, {int timeout = 5000}) async {
     try {
       final completer = Completer<int>();
       final receiver = ReceivePort();
-      clashFFI.async_test_delay(proxyName.toNativeUtf8().cast(),
-          url.toNativeUtf8().cast(), timeout, receiver.sendPort.nativePort);
+      clashFFI.async_test_delay(
+          proxyName.toNativeUtf8().cast(),
+          customTestUrl.toNativeUtf8().cast(),
+          timeout,
+          receiver.sendPort.nativePort);
       final subs = receiver.listen((message) {
         if (!completer.isCompleted) {
           completer.complete(json.decode(message)['delay']);

@@ -25,7 +25,7 @@ class Setting extends StatefulWidget {
 class _SettingState extends State<Setting> {
   @override
   Widget build(BuildContext context) {
-    final config = Get.find<ClashService>().configEntity;
+    final cs = Get.find<ClashService>();
     const textStyle = TextStyle(fontFamily: 'nssc');
     // var textStyle = Theme.of(context).primaryTextTheme.headline6;
     var themeData = Provider.of<ThemeCollection>(context);
@@ -34,7 +34,7 @@ class _SettingState extends State<Setting> {
     //   height: 800,
     // );
     return Obx(
-      () => config.value == null
+      () => cs.configEntity.value == null
           ? BrnLoadingDialog(
               content: 'Loading'.tr,
             )
@@ -50,7 +50,7 @@ class _SettingState extends State<Setting> {
                       "Proxy mode".tr,
                       style: textStyle,
                     ),
-                    value: Text(config.value!.mode!.tr),
+                    value: Text(cs.configEntity.value!.mode!.tr),
                     onPressed: (cxt) {
                       handleProxyMode();
                     },
@@ -61,7 +61,7 @@ class _SettingState extends State<Setting> {
                       style: textStyle,
                     ),
                     value: Text(
-                      config.value!.socksPort.toString(),
+                      cs.configEntity.value!.socksPort.toString(),
                       style: textStyle,
                     ),
                     onPressed: (cxt) {
@@ -86,7 +86,7 @@ class _SettingState extends State<Setting> {
                       style: textStyle,
                     ),
                     value: Text(
-                      config.value!.port.toString(),
+                      cs.configEntity.value!.port.toString(),
                       style: textStyle,
                     ),
                     onPressed: (cxt) {
@@ -111,7 +111,7 @@ class _SettingState extends State<Setting> {
                       style: textStyle,
                     ),
                     value: Text(
-                      config.value!.redirPort.toString(),
+                      cs.configEntity.value!.redirPort.toString(),
                       style: textStyle,
                     ),
                     onPressed: (cxt) {
@@ -136,7 +136,7 @@ class _SettingState extends State<Setting> {
                       style: textStyle,
                     ),
                     value: Text(
-                      config.value!.mixedPort.toString(),
+                      cs.configEntity.value!.mixedPort.toString(),
                       style: textStyle,
                     ),
                     onPressed: (cxt) {
@@ -160,7 +160,7 @@ class _SettingState extends State<Setting> {
                         "allow_lan".tr,
                         style: textStyle,
                       ),
-                      initialValue: config.value?.allowLan,
+                      initialValue: cs.configEntity.value?.allowLan,
                       onToggle: (e) {
                         Get.find<ClashService>()
                             .changeConfigField('allow-lan', e);
@@ -170,7 +170,7 @@ class _SettingState extends State<Setting> {
                         "Enable IPv6".tr,
                         style: textStyle,
                       ),
-                      initialValue: config.value?.ipv6,
+                      initialValue: cs.configEntity.value?.ipv6,
                       onToggle: (e) {
                         Get.find<ClashService>().changeConfigField('ipv6', e);
                       }),
@@ -260,6 +260,28 @@ class _SettingState extends State<Setting> {
                             Tips.info("success");
                           });
                         }),
+                    SettingsTile.navigation(
+                      title: Text(
+                        "Testing rule".tr,
+                        style: textStyle,
+                      ),
+                      value: Text(
+                        cs.customTestUrl,
+                        style: textStyle,
+                      ),
+                      onPressed: (cxt) {
+                        Get.find<DialogService>().inputDialog(
+                            title: 'Enter custom host or domian for Test'.tr,
+                            onText: (text) {
+                              if (isValidIPorDomain(text)) {
+                                cs.changeCustomTestUrl(text);
+                              } else {
+                                EasyLoading.showError(
+                                    "not host or domain,Please Retry".tr);
+                              }
+                            });
+                      },
+                    ),
                     if (isDesktop)
                       SettingsTile.switchTile(
                           title: Text(

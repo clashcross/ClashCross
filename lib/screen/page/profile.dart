@@ -7,6 +7,7 @@ import 'package:kommon/kommon.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -52,10 +53,11 @@ class _ProfileState extends State<Profile> {
                     onTap: () async {
                       final dir = await getApplicationSupportDirectory();
                       if (Platform.isWindows) {
-                        launchUrlString("file://${join(dir.path, "clashCross")}");
+                        launchUrlString(
+                            "file://${join(dir.path, "clashCross")}");
                       } else {
-                        launchUrl(
-                            Uri.parse("file://${join(dir.path, "clashCross")}"));
+                        launchUrl(Uri.parse(
+                            "file://${join(dir.path, "clashCross")}"));
                       }
                     },
                     child: Row(
@@ -100,34 +102,34 @@ class _ProfileState extends State<Profile> {
               // title: 'No profile, please add profiles.'.tr,
               content: "How to import profie".tr,
             ),
-            const Divider(
-              thickness: 1.0,
-            ),
-            // Text("Author:".trParams({"name": "Kingtous"})),
-            Text(
-              "afftips".tr,
-              style: const TextStyle(fontFamily: 'nssc'),
-            ),
-            Wrap(
-              children: [
-                TextButton(
-                    onPressed: () {
-                      customLaunch(
-                          Uri.parse("https://www.vultr.com/?ref=8992609-8H"));
-                    },
-                    child: Text(
-                      "Vultr".tr,
-                    )),
-                TextButton(
-                    onPressed: () {
-                      customLaunch(
-                          Uri.parse("https://app.cloudcone.com/?ref=10165"));
-                    },
-                    child: Text(
-                      "CloudCone".tr,
-                    )),
-              ],
-            ),
+            // const Divider(
+            //   thickness: 1.0,
+            // ),
+            // // Text("Author:".trParams({"name": "Kingtous"})),
+            // Text(
+            //   "afftips".tr,
+            //   style: const TextStyle(fontFamily: 'nssc'),
+            // ),
+            // Wrap(
+            //   children: [
+            //     TextButton(
+            //         onPressed: () {
+            //           customLaunch(
+            //               Uri.parse("https://www.vultr.com/?ref=8992609-8H"));
+            //         },
+            //         child: Text(
+            //           "Vultr".tr,
+            //         )),
+            //     TextButton(
+            //         onPressed: () {
+            //           customLaunch(
+            //               Uri.parse("https://app.cloudcone.com/?ref=10165"));
+            //         },
+            //         child: Text(
+            //           "CloudCone".tr,
+            //         )),
+            //   ],
+            // ),
           ],
         ),
       );
@@ -198,6 +200,7 @@ class _ProfileState extends State<Profile> {
                   subtitle: link.isEmpty
                       ? const Offstage()
                       : Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             TextButton(
                                 onPressed: () async {
@@ -248,7 +251,9 @@ class _ProfileState extends State<Profile> {
                                         "update subscription".tr))),
                             TextButton(
                                 onPressed: () async {
-                                  FlutterClipboard.copy(link).then((value) {
+                                  FlutterClipboard.copy(
+                                          "https://www.clashcross.xyz/site/share?url=$link")
+                                      .then((value) {
                                     // BrnToast.show('Success'.tr, context);
                                     EasyLoading.showSuccess('Success'.tr);
                                   });
@@ -260,6 +265,19 @@ class _ProfileState extends State<Profile> {
                                             .primaryTextTheme
                                             .bodyMedium,
                                         "Copy link".tr))),
+                            TextButton(
+                                onPressed: () async {
+                                  Share.share(
+                                          "https://www.clashcross.xyz/site/share?url=$link")
+                                      .then((value) => null);
+                                },
+                                child: Tooltip(
+                                    message: link,
+                                    child: Text(
+                                        style: Theme.of(context)
+                                            .primaryTextTheme
+                                            .bodyMedium,
+                                        "Share link".tr))),
                             // TextButton(
                             //     onPressed: () async {
                             //       BrnToast.show('Updating'.tr, context);

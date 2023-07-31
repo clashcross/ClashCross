@@ -12,49 +12,60 @@
       简体中文
       </a></p>
 
- # Install
- 
+# Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=shipinbaoku/clashcross&type=Date)](https://star-history.com/#shipinbaoku/clashcross&Date)
+
+# Install
+
 ## Android
+
 <a href='https://play.google.com/store/apps/details?id=com.clashcross.clashcross&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' style="width:250px"/></a>
 
-or download .apk directly. [https://github.com/shipinbaoku/ClashCross/releases](https://github.com/shipinbaoku/ClashCross/releases)
+or download .apk
+directly. [https://github.com/shipinbaoku/ClashCross/releases](https://github.com/shipinbaoku/ClashCross/releases)
+
 ## Windows
 
 Please download .exe setup directly. https://github.com/shipinbaoku/ClashCross/releases
 
 ## Macos
 
-Please download .dmg setup directly. [https://github.com/shipinbaoku/ClashCross/releases](https://github.com/shipinbaoku/ClashCross/releases)
+Please download .dmg setup
+directly. [https://github.com/shipinbaoku/ClashCross/releases](https://github.com/shipinbaoku/ClashCross/releases)
 
 ## Linux
 
 - snap:
-  - `snap install clashcross`
-  - <a href="https://snapcraft.io/clashcross">
-    <img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-white.svg" />
-    </a>
+    - `snap install clashcross`
+    - <a href="https://snapcraft.io/clashcross">
+      <img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-white.svg" />
+      </a>
 - deb:
-  - `sudo apt install libappindicator3-dev` 
-  - <p>then</p>
-  - `sudo dpkg -i clashcross.deb`
-  
+    - `sudo apt install libappindicator3-dev`
+    - <p>then</p>
+    - `sudo dpkg -i clashcross.deb`
+
 ## Windows
 
-Please download .exe setup directly. [https://github.com/shipinbaoku/ClashCross/releases](https://github.com/shipinbaoku/ClashCross/releases)
+Please download .exe setup
+directly. [https://github.com/shipinbaoku/ClashCross/releases](https://github.com/shipinbaoku/ClashCross/releases)
 
 # Url_scheme
 
-Our application allows third parties to import Clash subscriptions using the url_scheme method, following the specifications below:
+Our application allows third parties to import Clash subscriptions using the url_scheme method,
+following the specifications below:
 
-## Android: clashcross://import-config?url=subscription_link
+## Android: clashcross://?url=subscription_link
 
 ## Windows & macOS: clashcross://?url=subscription_link
 
 ## Linux: Not supported at the moment, users need to manually copy and paste for importing.
 
-## <a href="/docs/en/url_scheme.md">Specific protocol management system modification method, using v2board as an example</a>
+## <a href="/docs/en/url_scheme.md">Specific instructions</a>
 
 # Screen
+
 - Home
 
   ![image](docs/screenshot/photo_2023-07-27_05-03-12.jpg)
@@ -75,6 +86,12 @@ Our application allows third parties to import Clash subscriptions using the url
   ![image](docs/screenshot/photo_2023-07-27_05-05-03.jpg)
 
 # Thinks for:
+
 - [clash](https://github.com/Dreamacro/clash)
 - [flcash](https://github.com/Fclash/Fclash)
 - [flutter](https://github.com/flutter/flutter)
+  <<<<<<< add-license-scan-badge
+
+## License
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fshipinbaoku%2Fclashcross.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fshipinbaoku%2Fclashcross?ref=badge_large)

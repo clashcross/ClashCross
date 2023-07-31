@@ -43,6 +43,7 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 **/google-services.json
+**/GoogleService-Info.json
 **/firebase_app_id_file.json
 */*.so
 */*.dll
@@ -54,3 +55,4 @@ app.*.map.json
 
 /lib/firebase_options.dart
 /lib/generated_bindings.dart
+/lib/http/options.dart

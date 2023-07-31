@@ -53,9 +53,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- Add optional android:host to distinguish your app
                      from others in case of conflicting scheme name -->
-                <data
-                    android:scheme="clashcross"
-                    android:host="import-config" />
+                <data android:scheme="clashcross" />
                 <!-- <data android:scheme="sample" /> -->
             </intent-filter>
             <intent-filter>
@@ -66,8 +64,8 @@
                 <!-- Add optional android:host to distinguish your app
                      from others in case of conflicting scheme name -->
                 <data
-                    android:scheme="clashcross"
-                    android:host="install-config" />
+                    android:host="import-config"
+                    android:scheme="clashcross" />
                 <!-- <data android:scheme="sample" /> -->
             </intent-filter>
             <intent-filter>
@@ -78,8 +76,8 @@
                 <!-- Add optional android:host to distinguish your app
                      from others in case of conflicting scheme name -->
                 <data
-                    android:scheme="clash"
-                    android:host="import-config" />
+                    android:host="install-config"
+                    android:scheme="clashcross" />
                 <!-- <data android:scheme="sample" /> -->
             </intent-filter>
             <intent-filter>
@@ -90,8 +88,20 @@
                 <!-- Add optional android:host to distinguish your app
                      from others in case of conflicting scheme name -->
                 <data
-                    android:scheme="clash"
-                    android:host="install-config" />
+                    android:host="import-config"
+                    android:scheme="clash" />
+                <!-- <data android:scheme="sample" /> -->
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Add optional android:host to distinguish your app
+                     from others in case of conflicting scheme name -->
+                <data
+                    android:host="install-config"
+                    android:scheme="clash" />
                 <!-- <data android:scheme="sample" /> -->
             </intent-filter>
             <!-- Specifies an Android theme to apply to this Activity as soon as
@@ -113,9 +123,9 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="https"
                     android:host="www.whiteproxy.net"
-                    android:pathPrefix="/import-config" />
+                    android:pathPrefix="/import-config"
+                    android:scheme="https" />
             </intent-filter>
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
@@ -124,9 +134,9 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="https"
                     android:host="www.clashcross.com"
-                    android:pathPrefix="/import-config" />
+                    android:pathPrefix="/import-config"
+                    android:scheme="https" />
             </intent-filter>
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
@@ -135,9 +145,9 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="https"
                     android:host="www.clashcross.app"
-                    android:pathPrefix="/import-config" />
+                    android:pathPrefix="/import-config"
+                    android:scheme="https" />
             </intent-filter>
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
@@ -146,9 +156,9 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="https"
                     android:host="www.clashcross.xyz"
-                    android:pathPrefix="/import-config" />
+                    android:pathPrefix="/import-config"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
 

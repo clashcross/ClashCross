@@ -44,12 +44,22 @@ class AboutPage extends StatelessWidget {
                 leading: const Icon(Icons.info),
                 title: Text(
                     "Your interactions and logs are kept and displayed only on your device. We do not collect, transmit, or share any of this content."
-                            .tr),
+                        .tr),
               ),
               const Divider(
                 thickness: 1.0,
               ),
-
+              ListTile(
+                  leading: const Icon(Icons.escalator_warning),
+                  title: TextButton(
+                    onPressed: () {
+                      customLaunch(
+                          Uri.parse("https://github.com/shipinbaoku/clashcross#url_scheme"));
+                    },
+                    child: Text(
+                        "Url_scheme:Our application allows third parties to import Clash subscriptions using the url_scheme method"
+                            .tr),
+                  )),
               // TextButton(
               //   onPressed: () {},
               //   child: Text(
@@ -57,6 +67,9 @@ class AboutPage extends StatelessWidget {
               //     style: const TextStyle(fontSize: 20,color: Colors.black),
               //   ),
               // ),
+              const Divider(
+                thickness: 1.0,
+              ),
               Text(
                 "version:".trParams({"version": cs.app_version}),
                 style: const TextStyle(fontFamily: 'nssc'),

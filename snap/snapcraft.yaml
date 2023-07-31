@@ -1,6 +1,6 @@
 name: clashcross
 base: core22
-version: '1.0.2'
+version: '1.0.3'
 summary: A Linux Clash Proxy Fronted based on Clash # 79 char long summary
 description: |
   A Linux Clash Proxy Fronted based on Clash. Supports subscriptions, proxies switcher, logger,

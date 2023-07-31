@@ -1,7 +1,37 @@
+# ClashCross Network Alliance - Your website has the opportunity to be showcased on the ClassCross Help page.
+## Demo
+## 示例
+![image](docs/screenshot/help_demo_photo_2023-07-31_18-39-18.jpg)
+## url_scheme format:
+
+```
+clashcross://?url=...&name=...&siteurl=...&sitename=...
+```
+
+## Deep Link format:
+
+```
+https://www.clashcross.xyz/site/share?url=...&name=...&siteurl=...&sitename=...
+```
+
+## Parameter Explanation
+
+- url: Subscription link, mandatory parameter.
+- name: Subscription name, optional parameter.
+- siteurl: Website domain, optional parameter.
+- sitename: Website name (limited to 10 characters, will be automatically truncated if exceeded),
+  optional parameter.
+
+- Note: To have your website showcased on the ClashCross Help page, both siteurl and sitename must
+  not
+  be empty.
+
 # Common examples of management system integration:
+
 ## v2board:
 
 Modify the content of the file /public/theme/v2board/assets/umi.js as follows:
+
 ```javascript
 ...
 return (Object(u["i"])() || Object(u["j"])()) && (t.push({
@@ -48,4 +78,5 @@ return (Object(u["i"])() || Object(u["j"])()) && (t.push({
 
 Then, upload the ClashCross.png icon file to /public/theme/v2board/assets/images/icon.
 
-Alternatively, you can directly download the modified umi.js file to overwrite the existing one. [Download link](/docs/v2board)
+Alternatively, you can directly download the modified umi.js file to overwrite the existing
+one. [Download link](/docs/v2board)

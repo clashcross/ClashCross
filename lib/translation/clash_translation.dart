@@ -92,7 +92,17 @@ class ClashTranslations extends Translations {
               "Copy the proxy command and run it in the terminal",
           "afftips":
               " If you plan to build your own server, please purchase the servers through the following Aff. All the service providers listed below are reputable businesses with a certain operational history and technical expertise. They guarantee both stability and quality. Your data will be effectively protected.",
-          "No Profile Please import": "No Profile Please import"
+          "No Profile Please import": "No Profile Please import",
+          "Url_scheme:Our application allows third parties to import Clash subscriptions using the url_scheme method":
+              "Url_scheme:Our application allows third parties to import Clash subscriptions using the url_scheme method",
+          "Enter custom host or domian for Test":
+              "Enter custom host or domian for Test",
+          "Testing rule": "Testing",
+          "not host or domain,Please Retry": "not host or domain,Please Retry",
+          "Share link": "Share",
+          "Importable ClashCross Websites": "Importable ClashCross Websites:",
+          "The listed URLs below are only representative of subscriptions that can be imported into ClashCross. ClashCross has no affiliation with them, please use your own discretion.":
+              "The listed URLs below are only representative of subscriptions that can be imported into ClashCross. ClashCross has no affiliation with them, please use your own discretion."
         },
         'zh_CN': {
           "http_port": "HTTP端口",
@@ -221,7 +231,16 @@ class ClashTranslations extends Translations {
           "Copy the proxy command and run it in the terminal": "复制代理命令到终端运行",
           "afftips":
               " 如果您打算自建服务请通过以下Aff购买服务器，以下服务商均为具有一定运营时常和技术能力的商家，稳定性方面和质量方面均有保障。数据可以得到有效保护。",
-          "No Profile Please import": "暂无订阅，请导入"
+          "No Profile Please import": "暂无订阅，请导入",
+          "Url_scheme:Our application allows third parties to import Clash subscriptions using the url_scheme method":
+              "我们的应用程序允许第三方通过url_scheme方式导入clash订阅",
+          "Enter custom host or domian for Test": "输入自定义测试host或者域名",
+          "Testing rule": "测试",
+          "not host or domain,Please Retry": "输入不正确,请重试",
+          "Share link": "分享",
+          "Importable ClashCross Websites": "可导入ClashCross网站:",
+          "The listed URLs below are only representative of subscriptions that can be imported into ClashCross. ClashCross has no affiliation with them, please use your own discretion.":
+          "以下所列网址只代表其订阅可以导入ClashCross。ClashCross和它们并无任何所属关系，请自行甄别。"
         }
       };
 }

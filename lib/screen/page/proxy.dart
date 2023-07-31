@@ -25,7 +25,7 @@ class _ProxyState extends State<Proxy> {
   Widget build(BuildContext context) {
     final c = Get.find<ClashService>();
     Map<String, dynamic> maps = c.proxies.value['proxies'] ?? {};
-    printInfo(info: 'proxies: ${maps.toString()}');
+    // printInfo(info: 'proxies: ${c.proxies}');
     var selectors = maps.keys.where((proxy) {
       return maps[proxy]['type'] == 'Selector';
     }).toList(growable: false);
@@ -112,7 +112,6 @@ class _ProxyState extends State<Proxy> {
           .where((sel) => maps[sel]['name'].toLowerCase() == 'global')
           .toList();
     } else {
-
       // if(mode == "rule"&& c.currentYaml.value=="config.yaml"){
       //   return Scaffold(
       //     appBar: AppBar(
@@ -146,14 +145,12 @@ class _ProxyState extends State<Proxy> {
       //     ),
       //   );
       // }
-    print(selectors);
-    print("maps");
+      print(selectors);
+      print("maps");
       selectors = selectors
           .where((sel) => maps[sel]['name'].toLowerCase() != 'global')
           .toList();
     }
-
-
 
     List<Tab> tabs = [];
     List<Widget> tabviews = [];
@@ -383,106 +380,116 @@ class _ProxyState extends State<Proxy> {
     final now = selector['now'];
     bool isDarkTheme = Provider.of<ThemeCollection>(context).isDarkActive;
     List<dynamic> allItems = selector['all'];
-    return Obx(
-      () {
-        var index = 0;
-        return Wrap(
-          alignment: WrapAlignment.start,
-          crossAxisAlignment: WrapCrossAlignment.start,
-          children: allItems.map((itemName) {
-            final delayInMs = service.proxyStatus[itemName.toString()] ?? 0;
-            return Card(
-              elevation: 6,
-              color: isDarkTheme
-                  ? const Color(0xff181227)
-                  : const Color(0xffF5F5F6),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16)),
-              child: InkWell(
-                onTap: () {},
-                child: Row(
-                  children: [
-                    Container(
-                      width: 12,
-                      height: 75,
-                      decoration: BoxDecoration(
-                        color: delayInMs < 0
-                            ? Colors.red
-                            : delayInMs == 0
-                                ? Colors.grey
-                                : delayInMs <= 100
-                                    ? Colors.green
-                                    : delayInMs <= 500
-                                        ? Colors.lightBlue
-                                        : delayInMs <= 1000
-                                            ? Colors.blue
-                                            : Colors.orange,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(5),
-                          bottomLeft: Radius.circular(5),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: BrnRadioButton(
-                          radioIndex: index++,
-                          behavior: HitTestBehavior.opaque,
-                          mainAxisSize: MainAxisSize.max,
-                          onValueChangedAtIndex: (newIndex, value) {
-                            final cs = Get.find<ClashService>();
-                            final res =
-                                cs.changeProxy(selectName, allItems[newIndex]);
-                            if (cs.isSystemProxyObs.value) {
-                              cs
-                                  .clearSystemProxy()
-                                  .then((value) => cs.setSystemProxy());
-                            }
-                            if (res) {
-                              EasyLoading.showSuccess('switch to name success.'
-                                  .trParams({"name": "${allItems[newIndex]}"}));
-                            } else {
-                              EasyLoading.showError('switch to name failed.'
-                                  .trParams({"name": "${allItems[newIndex]}"}));
-                            }
-                            Future.delayed(Duration.zero, () {
-                              setState(() {});
-                            });
-                          },
-                          isSelected: itemName == now,
-                          child: Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: Tooltip(
-                                    message: itemName.toString(),
-                                    child: Text(
-                                      itemName,
-                                      textAlign: TextAlign.start,
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 1,
-                                      style: Theme.of(context)
-                                          .primaryTextTheme
-                                          .headline6,
-                                    ),
-                                  ).marginOnly(left: 4.0),
-                                ),
-                                Text(
-                                  delayInMs == 0 ? '' : '${delayInMs}ms',
-                                  style: const TextStyle(
-                                      fontSize: 12, color: Colors.grey),
-                                ).marginOnly(right: 4.0)
-                              ],
+    return Column(
+      children: [
+        Obx(
+          () {
+            var index = 0;
+            return Wrap(
+              alignment: WrapAlignment.start,
+              crossAxisAlignment: WrapCrossAlignment.start,
+              children: allItems.map((itemName) {
+                final delayInMs = service.proxyStatus[itemName.toString()] ?? 0;
+                return Card(
+                  elevation: 6,
+                  color: isDarkTheme
+                      ? const Color(0xff181227)
+                      : const Color(0xffF5F5F6),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16)),
+                  child: InkWell(
+                    onTap: () {},
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 12,
+                          height: 75,
+                          decoration: BoxDecoration(
+                            color: delayInMs < 0
+                                ? Colors.red
+                                : delayInMs == 0
+                                    ? Colors.grey
+                                    : delayInMs <= 100
+                                        ? Colors.green
+                                        : delayInMs <= 500
+                                            ? Colors.lightBlue
+                                            : delayInMs <= 1000
+                                                ? Colors.blue
+                                                : Colors.orange,
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(5),
+                              bottomLeft: Radius.circular(5),
                             ),
-                          )),
+                          ),
+                        ),
+                        Expanded(
+                          child: BrnRadioButton(
+                              radioIndex: index++,
+                              behavior: HitTestBehavior.opaque,
+                              mainAxisSize: MainAxisSize.max,
+                              onValueChangedAtIndex: (newIndex, value) {
+                                final cs = Get.find<ClashService>();
+                                final res = cs.changeProxy(
+                                    selectName, allItems[newIndex]);
+                                if (cs.isSystemProxyObs.value) {
+                                  cs
+                                      .clearSystemProxy()
+                                      .then((value) => cs.setSystemProxy());
+                                }
+                                if (res) {
+                                  EasyLoading.showSuccess(
+                                      'switch to name success.'.trParams(
+                                          {"name": "${allItems[newIndex]}"}));
+                                } else {
+                                  EasyLoading.showError('switch to name failed.'
+                                      .trParams(
+                                          {"name": "${allItems[newIndex]}"}));
+                                }
+                                Future.delayed(Duration.zero, () {
+                                  setState(() {});
+                                });
+                              },
+                              isSelected: itemName == now,
+                              child: Expanded(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Tooltip(
+                                        message: itemName.toString(),
+                                        child: Text(
+                                          itemName,
+                                          textAlign: TextAlign.start,
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1,
+                                          style: Theme.of(context)
+                                              .primaryTextTheme
+                                              .headline6,
+                                        ),
+                                      ).marginOnly(left: 4.0),
+                                    ),
+                                    Text(
+                                      delayInMs == 0 ? '' : '${delayInMs}ms',
+                                      style: const TextStyle(
+                                          fontSize: 12, color: Colors.grey),
+                                    ).marginOnly(right: 4.0)
+                                  ],
+                                ),
+                              )),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
+                );
+              }).toList(growable: false),
             );
-          }).toList(growable: false),
-        );
-      },
+          },
+        ),
+        const SizedBox(
+          height: kToolbarHeight,
+        )
+      ],
     );
   }
 }

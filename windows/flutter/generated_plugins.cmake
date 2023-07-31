@@ -4,11 +4,13 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   app_links
+  connectivity_plus
   file_selector_windows
   firebase_core
   permission_handler_windows
   proxy_manager
   screen_retriever
+  share_plus
   tray_manager
   url_launcher_windows
   window_manager

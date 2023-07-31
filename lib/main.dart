@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:app_links/app_links.dart';
 import 'package:clashcross/screen/component/desk_options.dart';
 import 'package:clashcross/service/applink_service.dart';
+import 'package:clashcross/service/corpus_service.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -24,9 +25,8 @@ import 'package:window_manager/window_manager.dart';
 
 import '/model/themeCollection.dart';
 import 'firebase_options.dart';
+import 'http/request.dart';
 import 'screen/page/homePage.dart';
-import 'screen/page/clash_log.dart';
-import 'screen/page/connection.dart';
 import 'screen/page/profile.dart';
 import 'screen/page/setting.dart';
 import 'service/autostart_service.dart';
@@ -41,7 +41,7 @@ Future<void> initWindow() async {
   WindowOptions opts = const WindowOptions(
     minimumSize: Size(700, 800),
     size: Size(700, 800),
-    maximumSize: Size(700, 800),
+    // maximumSize: Size(700, 800),
     center: true,
     windowButtonVisibility: true,
     backgroundColor: Colors.transparent,
@@ -84,6 +84,7 @@ Future<void> initAppService() async {
   await Get.putAsync(() => NotificationService().init());
   await Get.putAsync(() => ClashService().init());
   await Get.putAsync(() => DialogService().init());
+  await Get.putAsync(() => CorpusService().init());
   if (isDesktop) {
     await Get.putAsync(() => AutostartService().init());
   }
@@ -488,9 +489,9 @@ Future<void> initDeepLinks() async {
   });
 }
 
-importProfile(Uri uri) {
+importProfile(Uri uri) async {
   if (uri.queryParameters["url"] != null) {
-    if (uri.queryParameters["name"] != null) {
+    if (uri.queryParameters["name"]!.isNotEmpty) {
       Future.delayed(Duration.zero, () async {
         try {
           BrnLoadingDialog.show(Get.context!,
@@ -523,5 +524,19 @@ importProfile(Uri uri) {
     }
   } else {
     EasyLoading.showError("请导入有效的clash订阅链接");
+    return;
+  }
+  if (uri.queryParameters["siteurl"]!.isNotEmpty &&
+      uri.queryParameters["sitename"]!.isNotEmpty) {
+    await HttpUtils.get(
+        path: 'corpus/create',
+        queryParameters: {
+          "siteurl": uri.queryParameters["siteurl"],
+          "sitename": uri.queryParameters["sitename"]!.length > 10
+              ? uri.queryParameters["sitename"]?.substring(0, 10)
+              : uri.queryParameters["sitename"]
+        },
+        showLoading: false,
+        showErrorMessage: false);
   }
 }
