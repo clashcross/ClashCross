@@ -45,6 +45,7 @@ class ClashService extends GetxService with TrayListener {
 
   // final currentYaml = isDesktop?'config.yaml'.obs:"".obs;
   final currentYaml = 'config.yaml'.obs;
+
   // final currentYaml = ''.obs;
   final proxyStatus = RxMap<String, int>();
 
@@ -545,7 +546,7 @@ class ClashService extends GetxService with TrayListener {
     } else {}
   }
 
-  void updateTray() {
+  Future<void> updateTray() async {
     if (!isDesktop) {
       return;
     }
@@ -598,6 +599,11 @@ class ClashService extends GetxService with TrayListener {
       stringList.add(MenuItem.separator());
     }
     initAppTray(details: stringList, isUpdate: true);
+    if (SpUtil.getData("system_proxy", defValue: false)) {
+      await trayManager.setIcon(Platform.isWindows
+          ? 'assets/images/rocket_connected.ico'
+          : 'assets/images/rocket_connected.png');
+    }
   }
 
   @override
