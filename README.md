@@ -90,7 +90,7 @@ following the specifications below:
 - [clash](https://github.com/Dreamacro/clash)
 - [flcash](https://github.com/Fclash/Fclash)
 - [flutter](https://github.com/flutter/flutter)
-  <<<<<<< add-license-scan-badge
+
 
 ## License
 
