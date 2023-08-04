@@ -801,19 +801,19 @@
 					href: "stash://install-config?url=" + encodeURIComponent(e) + "&name=" + window.settings.title
 				})), Object(u["k"])() && (t.push({
 					title: "ClashCross",
-					href: "clashcross://install-config?url=" + encodeURIComponent(e) + "&name=" + window.settings.title
+					href: "clashcross://install-config?url=" + encodeURIComponent(e) + "&name=" + window.settings.title+"&siteurl="+window.location.host+"&sitename=" + window.settings.title
 				}),t.push({
 					title: "ClashX",
 					href: "clash://install-config?url=" + encodeURIComponent(e) + "&name=" + window.settings.title
 				})), Object(u["n"])() && (t.push({
 					title: "ClashCross",
-					href: "clashcross://install-config?url=" + encodeURIComponent(e) + "&name=" + window.settings.title
+					href: "clashcross://install-config?url=" + encodeURIComponent(e) + "&name=" + window.settings.title+"&siteurl="+window.location.host+"&sitename=" + window.settings.title
 				}),t.push({
 					title: "Clash For Windows",
 					href: "clash://install-config?url=" + encodeURIComponent(e) + "&name=" + window.settings.title
 				})), Object(u["g"])() && (t.push({
 					title: "ClashCross",
-					href: "clashcross://install-config?url=" + encodeURIComponent(e) + "&name=" + window.settings.title
+					href: "clashcross://install-config?url=" + encodeURIComponent(e) + "&name=" + window.settings.title+"&siteurl="+window.location.host+"&sitename=" + window.settings.title
 				}),t.push({
 					title: "Clash For Android",
 					href: "clash://install-config?url=" + encodeURIComponent(e) + "&name=" + window.settings.title

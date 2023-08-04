@@ -1,4 +1,4 @@
-# ClashCross Network Alliance - Your website has the opportunity to be showcased on the ClassCross Help page.
+# After integrating ClashCross, your website will have the opportunity to be showcased in our application, gaining higher visibility and promotion.
 ## Demo
 ## 示例
 ![image](/docs/screenshot/help_demo_photo_2023-07-31_18-39-18.jpg)

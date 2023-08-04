@@ -1,4 +1,4 @@
-# ClashCross网盟-您的网站有机会展示于ClassCross帮助页
+# 集成ClashCross后，您的网站将有机会展示在我们的应用里，获得更高的推广度
 
 ## 示例
 ![image](/docs/screenshot/help_demo_photo_2023-07-31_18-39-18.jpg)

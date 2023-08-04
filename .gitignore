@@ -56,3 +56,4 @@ app.*.map.json
 /lib/firebase_options.dart
 /lib/generated_bindings.dart
 /lib/http/options.dart
+/lib
